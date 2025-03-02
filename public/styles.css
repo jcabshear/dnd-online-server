@@ -20,6 +20,48 @@ body {
     color: white;
 }
 
+.button-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+button {
+    background-color: #66ccff;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(102, 204, 255, 0.8);
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #3399ff;
+    box-shadow: 0 0 20px rgba(102, 204, 255, 1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* Game Code Input Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    z-index: 1000;
+}
+
 /* ======== DASHBOARD PAGE (DASHBOARD.HTML) ======== */
 .dashboard {
     background-color: #121212; /* Dark theme */
