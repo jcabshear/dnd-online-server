@@ -8,7 +8,8 @@
     <script defer src="/socket.io/socket.io.js"></script>
     <script defer src="dashboard.js"></script>
 </head>
-<body>
+<body class="dashboard"> <!-- Added dashboard class -->
+
     <header>
         <h1>D&D Online Game Dashboard</h1>
         <p id="gameCodeDisplay"></p>
@@ -27,7 +28,6 @@
         <section id="character" class="tab-content active">
             <h2>Character Creation</h2>
             <p>Design your hero! Choose race, class, background, and stats.</p>
-            <!-- Character creation form will go here -->
         </section>
 
         <section id="inventory" class="tab-content">
