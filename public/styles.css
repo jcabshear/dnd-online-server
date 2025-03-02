@@ -1,4 +1,4 @@
-/* General Styles (Shared by All Pages) */
+/* General Styles */
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-/* ========== LOGIN PAGE STYLES ========== */
+/* ======== LOGIN PAGE (INDEX.HTML) ======== */
 .homepage {
     background-image: url('https://res.cloudinary.com/dvwjggi8t/image/upload/v1740896035/oen4fdvbjhhyjgbeikqy.webp');
     background-size: cover;
@@ -20,15 +20,16 @@ body {
     color: white;
 }
 
-/* ========== DASHBOARD STYLES ========== */
+/* ======== DASHBOARD PAGE (DASHBOARD.HTML) ======== */
 .dashboard {
-    background-color: #121212; /* Dark background */
+    background-color: #121212; /* Dark theme */
     color: white;
 }
 
 .dashboard header {
     background: #222;
     padding: 20px;
+    position: relative;
 }
 
 .dashboard .tabs {
@@ -60,10 +61,13 @@ body {
     display: block;
 }
 
+/* Move Leave Game Button to Top Right */
 button#leaveGame {
     background-color: #ff4444;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    margin-top: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
