@@ -10,17 +10,20 @@
     <header>
         <h1>Welcome to the D&D Online Game</h1>
         <p>Embark on a journey of adventure, strategy, and magic.</p>
-        <button id="joinGame">Join the Game</button>
+        <div class="button-container">
+            <button id="joinExisting">Join Existing Game</button>
+            <button id="createNew">Create New Game</button>
+        </div>
     </header>
 
     <!-- Game Code Display (Top Right) -->
     <div id="gameCodeDisplay" class="game-code-box"></div>
 
-    <!-- Popup for Join/Create Game -->
+    <!-- Popup for Entering a Game Code -->
     <div id="gamePopup" class="popup">
-        <h2>Join or Create a Game</h2>
-        <button id="joinExisting">Join Existing Game</button>
-        <button id="createNew">Create New Game</button>
+        <h2>Enter Game Code</h2>
+        <input type="text" id="gameCodeInput" placeholder="Enter game code" />
+        <button id="submitGameCode">Join Game</button>
         <button id="closePopup">Cancel</button>
     </div>
 
