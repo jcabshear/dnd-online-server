@@ -25,6 +25,12 @@ p {
     margin-bottom: 20px;
 }
 
+.button-container {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
 button {
     background-color: #66ccff; /* Light blue */
     color: white;
@@ -45,6 +51,7 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+
 
 /* Popup styles */
 .popup {
