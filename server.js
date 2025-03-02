@@ -23,6 +23,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
+app.get('/dashboard', (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'dashboard.html'));
+});
+
 // Temporary storage for active games
 const games = {}; 
 
