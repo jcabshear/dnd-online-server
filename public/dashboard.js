@@ -1,25 +1,27 @@
-const socket = io(); // Connect to WebSocket server
+document.addEventListener('DOMContentLoaded', () => {
+    const gameCode = localStorage.getItem('gameCode');
+    if (gameCode) {
+        document.getElementById('gameCodeDisplay').innerText = `Game Code: ${gameCode}`;
+    }
 
-const gameCode = localStorage.getItem('gameCode');
-if (!gameCode) {
-    window.location.href = '/';
-} else {
-    document.getElementById('gameCodeDisplay').innerText = `Game Code: ${gameCode}`;
-    socket.emit('joinGame', { gameCode });
-}
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.tab-button');
+    const contents = document.querySelectorAll('.tab-content');
 
-socket.on('joinSuccess', (data) => {
-    console.log(`Joined game: ${data.gameCode}`);
-});
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            contents.forEach(c => c.classList.remove('active'));
 
-socket.on('joinError', (data) => {
-    alert(data.message);
-    localStorage.removeItem('gameCode');
-    window.location.href = '/';
-});
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
 
-// Leave game button
-document.getElementById('leaveGame').addEventListener('click', () => {
-    localStorage.removeItem('gameCode');
-    window.location.href = '/';
+    // Leave game logic
+    document.getElementById('leaveGame').addEventListener('click', () => {
+        if (confirm('Are you sure you want to leave the game?')) {
+            window.location.href = '/';
+        }
+    });
 });
