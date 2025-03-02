@@ -8,11 +8,12 @@
     <script defer src="/socket.io/socket.io.js"></script>
     <script defer src="dashboard.js"></script>
 </head>
-<body class="dashboard"> <!-- Added dashboard class -->
+<body class="dashboard">
 
     <header>
         <h1>D&D Online Game Dashboard</h1>
         <p id="gameCodeDisplay"></p>
+        <button id="leaveGame">Leave Game</button>
     </header>
 
     <nav class="tabs">
@@ -24,40 +25,9 @@
         <button class="tab-button" data-tab="party">Party Members</button>
     </nav>
 
-    <main>
-        <section id="character" class="tab-content active">
-            <h2>Character Creation</h2>
-            <p>Design your hero! Choose race, class, background, and stats.</p>
-        </section>
-
-        <section id="inventory" class="tab-content">
-            <h2>Inventory</h2>
-            <p>Manage your items and equipment.</p>
-        </section>
-
-        <section id="abilities" class="tab-content">
-            <h2>Abilities & Spells</h2>
-            <p>View and use your character's abilities.</p>
-        </section>
-
-        <section id="quests" class="tab-content">
-            <h2>Quests & Notes</h2>
-            <p>Track objectives and write notes about your adventures.</p>
-        </section>
-
-        <section id="chat" class="tab-content">
-            <h2>Game Chat & Log</h2>
-            <p>Communicate with your party and review past events.</p>
-        </section>
-
-        <section id="party" class="tab-content">
-            <h2>Party Members</h2>
-            <p>View party members and their stats.</p>
-        </section>
+    <main id="tab-content">
+        <!-- Tab content will be dynamically loaded here -->
     </main>
 
-    <footer>
-        <button id="leaveGame">Leave Game</button>
-    </footer>
 </body>
 </html>
