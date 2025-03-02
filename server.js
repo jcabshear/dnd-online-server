@@ -27,13 +27,15 @@ app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'dashboard.html'));
 });
 
-// Temporary storage for active games
+// Permanent storage for active games
 const games = {}; 
 
 // Create a new game and generate a unique game code
 app.post('/create-game', (req, res) => {
     const gameCode = Math.random().toString(36).substr(2, 6).toUpperCase();
-    games[gameCode] = { players: [], createdAt: new Date() };
+    if (!games[gameCode]) {
+        games[gameCode] = { players: [], createdAt: new Date() };
+    }
     res.json({ gameCode });
 });
 
@@ -43,14 +45,16 @@ io.on('connection', (socket) => {
   
   socket.on('createGame', () => {
     const gameCode = Math.random().toString(36).substr(2, 6).toUpperCase();
-    games[gameCode] = { players: [], createdAt: new Date() };
+    if (!games[gameCode]) {
+        games[gameCode] = { players: [], createdAt: new Date() };
+    }
     socket.emit('gameCreated', { gameCode });
   });
 
   socket.on('joinGame', ({ gameCode }) => {
     if (games[gameCode]) {
       games[gameCode].players.push(socket.id);
-      socket.emit('joinSuccess', { gameCode, message: "Successfully joined the game!" });
+      socket.emit('joinSuccess', { gameCode, players: games[gameCode].players, message: "Successfully joined the game!" });
       console.log(`User ${socket.id} joined game ${gameCode}`);
     } else {
       socket.emit('joinError', { message: "Game code not found. Please try again." });
@@ -59,6 +63,17 @@ io.on('connection', (socket) => {
   
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id);
+    for (const gameCode in games) {
+      games[gameCode].players = games[gameCode].players.filter(player => player !== socket.id);
+    }
+  });
+
+  socket.on('deleteGame', ({ gameCode }) => {
+    if (games[gameCode]) {
+      delete games[gameCode];
+      console.log(`Game ${gameCode} deleted by admin.`);
+      io.emit('gameDeleted', { gameCode });
+    }
   });
 });
 
