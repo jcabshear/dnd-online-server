@@ -14,9 +14,46 @@
         <p id="gameCodeDisplay"></p>
     </header>
 
+    <nav class="tabs">
+        <button class="tab-button active" data-tab="character">Character Creation</button>
+        <button class="tab-button" data-tab="inventory">Inventory</button>
+        <button class="tab-button" data-tab="abilities">Abilities & Spells</button>
+        <button class="tab-button" data-tab="quests">Quests & Notes</button>
+        <button class="tab-button" data-tab="chat">Game Chat & Log</button>
+        <button class="tab-button" data-tab="party">Party Members</button>
+    </nav>
+
     <main>
-        <h2>Players in the Game</h2>
-        <ul id="playerList"></ul>
+        <section id="character" class="tab-content active">
+            <h2>Character Creation</h2>
+            <p>Design your hero! Choose race, class, background, and stats.</p>
+            <!-- Character creation form will go here -->
+        </section>
+
+        <section id="inventory" class="tab-content">
+            <h2>Inventory</h2>
+            <p>Manage your items and equipment.</p>
+        </section>
+
+        <section id="abilities" class="tab-content">
+            <h2>Abilities & Spells</h2>
+            <p>View and use your character's abilities.</p>
+        </section>
+
+        <section id="quests" class="tab-content">
+            <h2>Quests & Notes</h2>
+            <p>Track objectives and write notes about your adventures.</p>
+        </section>
+
+        <section id="chat" class="tab-content">
+            <h2>Game Chat & Log</h2>
+            <p>Communicate with your party and review past events.</p>
+        </section>
+
+        <section id="party" class="tab-content">
+            <h2>Party Members</h2>
+            <p>View party members and their stats.</p>
+        </section>
     </main>
 
     <footer>
@@ -24,4 +61,3 @@
     </footer>
 </body>
 </html>
-
