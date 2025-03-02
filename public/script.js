@@ -1,9 +1,11 @@
 const socket = io(); // Connect to WebSocket server
 
+// Open the game popup when clicking "Join the Game"
 document.getElementById('joinGame').addEventListener('click', () => {
     document.getElementById('gamePopup').style.display = 'block';
 });
 
+// Close the popup when clicking "Cancel"
 document.getElementById('closePopup').addEventListener('click', () => {
     document.getElementById('gamePopup').style.display = 'none';
 });
@@ -32,4 +34,9 @@ socket.on('gameCreated', (data) => {
 
     // Close popup
     document.getElementById('gamePopup').style.display = 'none';
+});
+
+// Ensure WebSocket connection logs errors if needed
+socket.on("connect_error", (err) => {
+    console.error("WebSocket Connection Error:", err);
 });
