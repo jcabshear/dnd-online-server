@@ -1,5 +1,50 @@
-<section>
-    <h2>Character Creation</h2>
-    <p>Design your hero! Choose race, class, background, and stats.</p>
-    <!-- Character creation form will go here -->
+<section class="character-creation">
+    <h2>Create Your Character</h2>
+    
+    <label for="characterName">Character Name:</label>
+    <input type="text" id="characterName" placeholder="Enter character name" />
+
+    <label for="race">Choose a Race:</label>
+    <select id="race">
+        <option value="human">Human</option>
+        <option value="elf">Elf</option>
+        <option value="dwarf">Dwarf</option>
+        <option value="halfling">Halfling</option>
+        <option value="orc">Orc</option>
+        <option value="tiefling">Tiefling</option>
+    </select>
+
+    <label for="class">Choose a Class:</label>
+    <select id="class">
+        <option value="fighter">Fighter</option>
+        <option value="wizard">Wizard</option>
+        <option value="rogue">Rogue</option>
+        <option value="cleric">Cleric</option>
+        <option value="ranger">Ranger</option>
+        <option value="bard">Bard</option>
+    </select>
+
+    <label>Roll Ability Scores:</label>
+    <div id="abilityScores">
+        <button id="rollStats">Roll Stats</button>
+        <p id="statsDisplay">Click 'Roll Stats' to generate ability scores.</p>
+    </div>
+
+    <label for="background">Background:</label>
+    <select id="background">
+        <option value="acolyte">Acolyte</option>
+        <option value="soldier">Soldier</option>
+        <option value="noble">Noble</option>
+        <option value="criminal">Criminal</option>
+        <option value="sage">Sage</option>
+    </select>
+
+    <label for="equipment">Starting Equipment:</label>
+    <select id="equipment">
+        <option value="basic">Basic Gear</option>
+        <option value="adventurer">Adventurer's Pack</option>
+        <option value="scholar">Scholar's Kit</option>
+    </select>
+
+    <button id="saveCharacter">Save Character</button>
 </section>
