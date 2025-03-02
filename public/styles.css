@@ -1,6 +1,13 @@
+/* General Styles (Shared by All Pages) */
 body {
     font-family: 'Arial', sans-serif;
     text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* ========== LOGIN PAGE STYLES ========== */
+.homepage {
     background-image: url('https://res.cloudinary.com/dvwjggi8t/image/upload/v1740896035/oen4fdvbjhhyjgbeikqy.webp');
     background-size: cover;
     background-position: center;
@@ -11,85 +18,52 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-    margin: 0;
-    padding: 0;
 }
 
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+/* ========== DASHBOARD STYLES ========== */
+.dashboard {
+    background-color: #121212; /* Dark background */
+    color: white;
 }
 
-p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+.dashboard header {
+    background: #222;
+    padding: 20px;
 }
 
-.button-container {
+.dashboard .tabs {
     display: flex;
-    gap: 15px;
     justify-content: center;
+    background: #333;
+    padding: 10px;
 }
 
-button {
-    background-color: #66ccff;
+.dashboard .tab-button {
+    background: #444;
     color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin: 5px;
     cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(102, 204, 255, 0.8);
-    transition: all 0.3s ease-in-out;
 }
 
-button:hover {
-    background-color: #3399ff;
-    box-shadow: 0 0 20px rgba(102, 204, 255, 1);
-}
-
-button:active {
-    transform: scale(0.95);
-}
-
-/* Popup styles */
-.popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    text-align: center;
-    z-index: 1000;
-}
-
-.popup button {
-    margin: 10px;
-}
-
-/* Game Code Display (Top Right) */
-.game-code-box {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 10px 15px;
-    border-radius: 5px;
-    color: white;
-    font-size: 1.2rem;
-    display: none;
-}
-
-/* Notification Style */
-.notification {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+.dashboard .tab-button.active {
     background: #66ccff;
-    color: white;
-    padding: 10px 20
+}
+
+.dashboard .tab-content {
+    display: none;
+    padding: 20px;
+}
+
+.dashboard .tab-content.active {
+    display: block;
+}
+
+button#leaveGame {
+    background-color: #ff4444;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 20px;
+}
