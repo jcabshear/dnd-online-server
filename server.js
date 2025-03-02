@@ -23,9 +23,26 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
-// WebSocket logic (unchanged)
+// Temporary storage for active games
+const games = {}; 
+
+// Create a new game and generate a unique game code
+app.post('/create-game', (req, res) => {
+    const gameCode = Math.random().toString(36).substr(2, 6).toUpperCase();
+    games[gameCode] = { players: [], createdAt: new Date() };
+    res.json({ gameCode });
+});
+
+// WebSocket logic
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
+  
+  socket.on('createGame', () => {
+    const gameCode = Math.random().toString(36).substr(2, 6).toUpperCase();
+    games[gameCode] = { players: [], createdAt: new Date() };
+    socket.emit('gameCreated', { gameCode });
+  });
+  
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id);
   });
