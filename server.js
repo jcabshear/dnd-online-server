@@ -37,16 +37,29 @@ app.post('/create-game', (req, res) => {
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
   
+  // Handle creating a game
   socket.on('createGame', () => {
     const gameCode = Math.random().toString(36).substr(2, 6).toUpperCase();
     games[gameCode] = { players: [], createdAt: new Date() };
     socket.emit('gameCreated', { gameCode });
   });
-  
+
+  // Handle joining a game
+  socket.on('joinGame', ({ gameCode }) => {
+    if (games[gameCode]) {
+      games[gameCode].players.push(socket.id);
+      socket.emit('joinSuccess', { gameCode, message: "Successfully joined the game!" });
+      console.log(`User ${socket.id} joined game ${gameCode}`);
+    } else {
+      socket.emit('joinError', { message: "Game code not found. Please try again." });
+    }
+  });
+
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id);
   });
 });
+
 
 // Start the server
 const PORT = process.env.PORT || 3000;
