@@ -1,3 +1,5 @@
+const socket = io(); // Connect to WebSocket server
+
 document.getElementById('joinGame').addEventListener('click', () => {
     document.getElementById('gamePopup').style.display = 'block';
 });
@@ -7,25 +9,27 @@ document.getElementById('closePopup').addEventListener('click', () => {
 });
 
 // Handle creating a new game
-document.getElementById('createNew').addEventListener('click', async () => {
-    const response = await fetch('/create-game', { method: 'POST' });
-    const data = await response.json();
-    
-    const popup = document.getElementById('gamePopup');
-    popup.innerHTML = `
-        <h2>Game Created!</h2>
-        <p>Share this code with others to join: <strong>${data.gameCode}</strong></p>
-        <button id="copyCode">Copy Code</button>
-        <button id="closePopup">Close</button>
-    `;
+document.getElementById('createNew').addEventListener('click', () => {
+    socket.emit('createGame');
+});
 
-    // Copy game code to clipboard
-    document.getElementById('copyCode').addEventListener('click', () => {
-        navigator.clipboard.writeText(data.gameCode);
-        alert('Game code copied to clipboard!');
-    });
+// Listen for game creation event from the server
+socket.on('gameCreated', (data) => {
+    // Display game code in the top right
+    const gameCodeBox = document.getElementById('gameCodeDisplay');
+    gameCodeBox.innerText = `Game Code: ${data.gameCode}`;
+    gameCodeBox.style.display = 'block';
 
-    document.getElementById('closePopup').addEventListener('click', () => {
-        popup.style.display = 'none';
-    });
+    // Show notification
+    const notification = document.getElementById('notification');
+    notification.innerText = "New game created!";
+    notification.style.display = 'block';
+
+    // Hide notification after 3 seconds
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+
+    // Close popup
+    document.getElementById('gamePopup').style.display = 'none';
 });
