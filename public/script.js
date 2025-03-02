@@ -14,32 +14,19 @@ document.getElementById('closePopup').addEventListener('click', () => {
 document.getElementById('submitGameCode').addEventListener('click', () => {
     const gameCode = document.getElementById('gameCodeInput').value.trim();
     if (gameCode) {
-        alert(`Joining game with code: ${gameCode} (Feature coming soon!)`);
-        document.getElementById('gamePopup').style.display = 'none';
+        socket.emit('joinGame', { gameCode });
     } else {
         alert('Please enter a valid game code.');
     }
 });
 
-// Handle creating a new game
-document.getElementById('createNew').addEventListener('click', () => {
-    socket.emit('createGame');
+// Listen for successful game join
+socket.on('joinSuccess', (data) => {
+    alert(`Successfully joined game: ${data.gameCode}`);
+    document.getElementById('gamePopup').style.display = 'none';
 });
 
-// Listen for game creation event from the server
-socket.on('gameCreated', (data) => {
-    // Display game code in the top right
-    const gameCodeBox = document.getElementById('gameCodeDisplay');
-    gameCodeBox.innerText = `Game Code: ${data.gameCode}`;
-    gameCodeBox.style.display = 'block';
-
-    // Show notification
-    const notification = document.getElementById('notification');
-    notification.innerText = "New game created!";
-    notification.style.display = 'block';
-
-    // Hide notification after 3 seconds
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
+// Listen for failed game join
+socket.on('joinError', (data) => {
+    alert(data.message);
 });
