@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="dashboard.js"></script>
+</head>
+<body>
+    <header>
+        <h1>D&D Online Game Dashboard</h1>
+        <p id="gameCodeDisplay"></p>
+    </header>
+
+    <main>
+        <h2>Players in the Game</h2>
+        <ul id="playerList"></ul>
+    </main>
+
+    <footer>
+        <button id="leaveGame">Leave Game</button>
+    </footer>
+</body>
+</html>
 
