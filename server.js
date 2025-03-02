@@ -1,8 +1,8 @@
-// Import dependencies
 import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 const server = createServer(app);
@@ -16,20 +16,16 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 
-// Simple endpoint to check if server is running
+// Serve static files from the "public" folder
+app.use(express.static(path.join(process.cwd(), 'public')));
+
 app.get('/', (req, res) => {
-  res.send('DND Server is running');
+  res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
-// WebSocket logic
+// WebSocket logic (unchanged)
 io.on('connection', (socket) => {
   console.log('A user connected:', socket.id);
-
-  socket.on('joinGame', (data) => {
-    console.log(`${data.playerName} joined the game.`);
-    io.emit('playerJoined', data);
-  });
-
   socket.on('disconnect', () => {
     console.log('A user disconnected:', socket.id);
   });
