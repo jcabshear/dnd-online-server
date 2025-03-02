@@ -32,7 +32,7 @@ p {
 }
 
 button {
-    background-color: #66ccff; /* Light blue */
+    background-color: #66ccff;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -51,7 +51,6 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
-
 
 /* Popup styles */
 .popup {
@@ -93,8 +92,4 @@ button:active {
     transform: translateX(-50%);
     background: #66ccff;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    display: none;
-}
-
+    padding: 10px 20
