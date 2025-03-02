@@ -18,6 +18,7 @@ app.use(express.json());
 
 // Serve static files from the "public" folder
 app.use(express.static(path.join(process.cwd(), 'public')));
+app.use('/tabs', express.static(path.join(process.cwd(), 'public/tabs')));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
